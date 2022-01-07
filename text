@@ -1,0 +1,59 @@
+// 2 loại alert: alert và prompt
+<Button
+  title="Alert!"
+  color="red"
+  onPress={() =>
+    Alert.alert("My title", "My message", [
+      { text: "Yes", onPress: () => console.log("Yes kk") },
+      { text: "No", onPress: () => console.log("No huhu") },
+    ])
+  }
+/>
+<Button
+  title="Prompt!"
+  color="dodgerblue"
+  onPress={() =>
+    Alert.prompt("My title", "My message", (text) => console.log(text))
+  }
+/>
+
+// touch
+<TouchableOpacity activeOpacity={0.5}>
+  <Image
+    source={{
+      width: 200,
+      height: 300,
+      uri: "https://picsum.photos/200/300",
+    }}
+  />
+</TouchableOpacity>
+
+// chế độ ngang và dọc (ngang: landscape, dọc: portrait)
+const { landscape } = useDeviceOrientation();
+<SafeAreaView style={styles.container}>
+  <View
+    style={{
+      backgroundColor: "dodgerblue",
+      width: "100%",
+      height: landscape ? "100%" : "30%",
+    }}
+  ></View>
+  <StatusBar style="auto" />
+</SafeAreaView>
+
+
+// List Cart
+ <View
+  style={{
+    backgroundColor: "#f8f4f4",
+    padding: 20,
+    paddingTop: 100,
+    flex: 1,
+  }}
+>
+  <Cart
+    title="Blue jean for sale!"
+    subTitle="$100"
+    image={require("./app/assets/jean.jpeg")}
+  />
+</View>
