@@ -23,13 +23,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 5,
+    marginVertical: 10,
   },
   text: {
     textTransform: "uppercase",
     color: colors.white,
     fontSize: 20,
     marginRight: 5,
+    fontWeight: "600",
   },
 });
 
