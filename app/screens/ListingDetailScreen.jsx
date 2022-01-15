@@ -1,32 +1,37 @@
-import { StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import AppText from "../components/AppText";
 import ListItem from "../components/lists/ListItem";
 import colors from "../config/colors";
 import { Image } from "react-native-expo-image-cache";
+import ContactSellerForm from "../components/ContactSellerForm";
 
 const ListingDetailScreen = ({ route }) => {
-  const { images, title, price } = route.params;
+  const listing = route.params;
 
   return (
-    <View>
+    <KeyboardAvoidingView
+      behavior="position"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+    >
       <Image
         style={styles.image}
         tint="light"
-        preview={{ uri: images[0].thumbnailUrl }}
-        uri={images[0].url}
+        preview={{ uri: listing.images[0].thumbnailUrl }}
+        uri={listing.images[0].url}
       />
       <View style={styles.contentContainer}>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>$ {price}</AppText>
+        <AppText style={styles.title}>{listing.title}</AppText>
+        <AppText style={styles.subTitle}>$ {listing.price}</AppText>
         <View style={styles.userContainer}>
           <ListItem
-            image={require("../assets/mosh.jpeg")}
+            image={require("../assets/mosh.jpg")}
             title="Mosh Hamedani"
             subTitle="5 Listings"
           />
         </View>
+        <ContactSellerForm listing={listing} />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -53,7 +53,7 @@
 //   <Card
 //     title="Blue jean for sale!"
 //     subTitle="$100"
-//     image={require("./app/assets/jean.jpeg")}
+//     image={require("./app/assets/jean.jpg")}
 //   />
 // </View>
 

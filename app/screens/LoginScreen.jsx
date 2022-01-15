@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import * as yup from "yup";
+import authApi from "../api/auth";
+import useAuth from "../auth/useAuth";
 import {
   AppForm,
   AppInputField,
@@ -7,11 +10,6 @@ import {
   SubmitButton,
 } from "../components/forms";
 import Screen from "../components/Screen";
-import authApi from "../api/auth";
-import { useContext, useState } from "react";
-import jwtDecode from "jwt-decode";
-import AuthContext from "../auth/context";
-import authStorage from "../auth/storage";
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label("Emaill"),
@@ -19,7 +17,7 @@ const validationSchema = yup.object().shape({
 });
 
 const LoginScreen = () => {
-  const authContext = useContext(AuthContext);
+  const { logIn } = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async ({ email, password }) => {
@@ -28,10 +26,7 @@ const LoginScreen = () => {
       if (!result.ok) return setLoginFailed(true);
       setLoginFailed(false);
 
-      const user = jwtDecode(result.data);
-      authContext.setUser(user);
-      // set cái này để khi reload k bị mất thông tin login
-      authStorage.storeToken(result.data);
+      logIn(result.data);
     } catch (error) {
       console.log(error);
     }

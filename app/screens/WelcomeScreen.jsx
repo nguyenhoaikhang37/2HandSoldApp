@@ -7,7 +7,7 @@ const WelcomeScreen = ({ navigation }) => {
     <ImageBackground
       blurRadius={10}
       style={styles.background}
-      source={require("../assets/background.jpeg")}
+      source={require("../assets/background.jpg")}
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />

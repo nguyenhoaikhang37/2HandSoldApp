@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import listingsApi from "../api/listings";
 import ActivityIndicator from "../components/ActivityIndicator";
@@ -18,34 +18,40 @@ const ListingScreen = ({ navigation }) => {
     request: loadListings,
   } = useApi(listingsApi.getListings);
 
+  const [refreshing, setRefreshing] = useState(false);
+
   useEffect(() => {
     loadListings();
   }, []);
 
   return (
-    <Screen style={styles.screen}>
-      {error && (
-        <>
-          <AppText>Couldn't retrieve the listings</AppText>
-          <AppButton title="Retry" onPress={loadListings} />
-        </>
-      )}
+    <>
       <ActivityIndicator visible={loading} />
-      <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subTitle={`$ ${item.price}`}
-            imageUrl={item.images[0].url}
-            thumbnailUrl={item.images[0].thumbnailUrl}
-            onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
-          />
+      <Screen style={styles.screen}>
+        {error && (
+          <>
+            <AppText>Couldn't retrieve the listings</AppText>
+            <AppButton title="Retry" onPress={loadListings} />
+          </>
         )}
-      />
-    </Screen>
+        <FlatList
+          data={listings}
+          keyExtractor={(listing) => listing.id.toString()}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Card
+              title={item.title}
+              subTitle={`$ ${item.price}`}
+              imageUrl={item.images[0].url}
+              thumbnailUrl={item.images[0].thumbnailUrl}
+              onPress={() => navigation.navigate(routes.LISTING_DETAIL, item)}
+            />
+          )}
+          refreshing={refreshing}
+          onRefresh={() => loadListings()}
+        />
+      </Screen>
+    </>
   );
 };
 

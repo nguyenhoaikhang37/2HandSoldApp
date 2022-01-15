@@ -14,7 +14,7 @@ const addListing = (listing, onUploadProgress) => {
   listing.images.forEach((image, index) =>
     data.append("images", {
       name: "image" + index,
-      type: "image/jpeg",
+      type: "image/jpg",
       uri: image,
     })
   );
