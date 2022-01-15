@@ -2,4 +2,4 @@
 
 #### **👥 Video demo:**
 
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA)
+[![Watch the video](https://cafedev.vn/wp-content/uploads/2019/11/cafedev_react_native_introduction.jpg)](https://youtu.be/qv4QNfPzsO8)
