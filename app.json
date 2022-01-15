@@ -2,7 +2,6 @@
   "expo": {
     "name": "LearnRNWithMosh",
     "slug": "LearnRNWithMosh",
-    "privacy": "private",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
@@ -30,19 +29,6 @@
     "description": "first Desc",
     "notification": {
       "iosDisplayInForeground": true
-    },
-    "extra": {
-      "bugsnag": {
-        "apiKey": "e7b55ea31da7f20acfad1c744b1a75c1"
-      }
-    },
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "@bugsnag/expo/hooks/post-publish.js",
-          "config": {}
-        }
-      ]
     }
   }
 }
